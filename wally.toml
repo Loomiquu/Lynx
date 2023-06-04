@@ -1,0 +1,9 @@
+[package]
+name = "loomiquu/lynx"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+
+include = ["src", "src/*", "LICENSE", "default.project.json"]
+
+[dependencies]
