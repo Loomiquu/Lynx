@@ -5,7 +5,7 @@
 <h3> Lynx is a Declarative UI Framework, that includes an easy to use State Manager </h3>  
 
 One reason you'd want to use Lynx, is due to it's unique UI creation system. Similar to Flutter's [Stateless Widget](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html) and [Stateful Widget](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html).  
-Another reason is the easy to use local & global state manager.  
+Another reason is the easy to use state manager.  
 
 <br/>
 <br/>
