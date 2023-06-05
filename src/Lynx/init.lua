@@ -1,6 +1,5 @@
 local Types = require(script.Types.PublicTypes)
 
-export type GlobalState = Types.GlobalState
 export type State = Types.State
 export type StaticComponent<T> = Types.StaticComponent<T>
 export type StatefulComponent<U> = Types.StatefulComponent<U>
