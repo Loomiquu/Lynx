@@ -1,33 +1,32 @@
-export type GlobalState = {
-	Update: (self: GlobalState, newValue: any?) -> nil,
-	AppendToComponent: (self: GlobalState, StatefulComponent: StatefulComponent<GuiObject>) -> nil
-}
 
 export type State = {
-	Update: (self: State, state: string, newValue: any?) -> nil,
-	GetGlobalState: (self: State, state: string) -> GlobalState
+	ClassName: string,
+	Update: (self: State, newValue: any?) -> nil,
+	GetValue: (self: State) -> any?
 }
 
 export type StaticComponent<T> = {
-	props: T,
+	ClassName: string,
 	Children: { any? },
 	GetProps: (self: StaticComponent<T>, ...string) -> { any? },
-	OnDisposed: RBXScriptSignal,
 	Dispose: (self: T) -> nil
 }
 
 export type StatefulComponent<U> = {
-	props: U,
+	ClassName: string,
 	Children: { any? },
-	states: State,
-	OnDisposed: RBXScriptSignal,
+	GetProps: (self: StaticComponent<U>, ...string) -> { any? },
+	SetProp: (self: StatefulComponent<U>, prop: string, value: any?) -> nil,
 	Dispose: (self: U) -> nil
 }
 
 export type Lynx = {
+	_VERSION: string,
+	ClassName: string,
 	CreateStaticComponent: <T>(Element: string, Props: T, Children: { any }) -> StaticComponent<T>,
 	CreateStatefulComponent: <U>(Element: string, Props: U, Children: { any }) -> StatefulComponent<U>,
-	CreateGlobalState: (StateName: string, initValue: any?) -> nil,
+	ImportComponent: <V>(GuiObject: V) -> StatefulComponent<V>,
+	CreateState: (initValue: any?) -> State,
 	GlobalDispose: <T>(...StaticComponent<T> | StatefulComponent<T>) -> nil
 }
 

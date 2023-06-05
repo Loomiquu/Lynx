@@ -1,28 +1,27 @@
-export type GlobalState = {
-	Update: (self: GlobalState, newValue: any?) -> nil,
-	AppendToComponent: (self: GlobalState, StatefulComponent: StatefulComponent<GuiObject>) -> nil
-}
 
 export type State = {
-	_states: { StaticComponent<any?> | StatefulComponent<any?>},
-	Update: (self: State, state: string, newValue: any?) -> nil,
-	GetGlobalState: (self: State, state: string) -> GlobalState
+	ClassName: string,
+	_value: any?,
+	_PairedComponents: {{ Component: StatefulComponent<any?>, Property: string }},
+	Update: (self: State, newValue: any?) -> nil,
+	GetValue: (self: State) -> any?
 }
 
 export type StaticComponent<T> = {
+	ClassName: string,
 	_instance: T,
 	Children: { any? },
 	GetProps: (self: StaticComponent<T>, ...string) -> { any? },
-	OnDisposed: RBXScriptSignal,
 	Dispose: (self: T) -> nil
 }
 
 export type StatefulComponent<U> = {
+	ClassName: string,
 	_instance: U,
-	children: { any? },
-	props: U,
-	states: State,
-	OnDisposed: RBXScriptSignal,
+	_states: { State },
+	Children: { any? },
+	GetProps: (self: StatefulComponent<U>, ...string) -> { any? },
+	SetProp: (self: StatefulComponent<U>, prop: string, value: any?) -> nil,
 	Dispose: (self: U) -> nil
 }
 

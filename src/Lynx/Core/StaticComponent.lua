@@ -5,11 +5,12 @@ local Types = require(mainDirectory.Types.PrivateTypes)
 
 type StaticComponent<T> = Types.StaticComponent<T>
 
-return function <T>(Element: string, props: { T }, children: { any? }): StaticComponent<T>
+return function <T>(Element: string, props: { T }, Children: { any? }): StaticComponent<T>
 	local component: StaticComponent<T> = {}
 
 	local element
 	local ok, err = pcall(function() element = Instance.new(Element) end)
+	component.ClassName = `StaticComponent<{element.ClassName}>`
 	component._instance = element
 	component.Children = {}
 
@@ -25,7 +26,7 @@ return function <T>(Element: string, props: { T }, children: { any? }): StaticCo
 		element[event]:Connect(func)
 	end
 
-	for name, childComponent in next, children or {} do
+	for name, childComponent in next, Children or {} do
 		childComponent._instance.Name = name
 		childComponent._instance.Parent = component._instance
 
