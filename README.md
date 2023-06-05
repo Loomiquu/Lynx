@@ -8,9 +8,76 @@ One reason you'd want to use Lynx, is due to it's unique UI creation system. Sim
 Another reason is the easy to use state manager.  
 
 <br/>
+
+---
+
 <br/>
 
 <h1> Static Vs Stateful </h1>
   
 <h2> Static Components </h2>  
-Static Components are constant User Interfaces that can not change after being constructed
+
+Static Components are a ***constant*** type of Component that can not change after being constructed, Static Components **DO NOT** support States
+
+<br/>
+
+<h2> Stateful Components </h2>
+
+Stateful Components are a ***Dynamic*** type of Component that can change after being constructed and support States
+
+<br/>
+
+<h2> Addendum </h2>
+
+You should utilize Static Components for Instances that will never change after construction i.e ScreenGuis, Frames (That are never modified after creation). While Stateful Components should be utilized for Instances that have to change or will eventually change
+
+---
+
+# Examples
+   
+  > StaticShowcase.lua
+  ```lua 
+  local Players = game:GetService("Players")
+  
+  local Lynx = require(path.to.Lynx)
+  
+  local client = Players.localPlayer
+  
+  local screenGui
+  
+  screenGui = Lynx.CreateStaticComponent("ScreenGui", 
+  {
+    IgnoreGuiInset = true,
+    Parent = client.PlayerGui
+  },
+  {
+    Frame = Lynx.CreateStaticComponent("TextLabel",
+    {
+      AnchorPoint = Vector2.new(0.5,0),
+      Position = UDim2.new(0.5,0,0,20),
+      Size = UDim2.new(0.3,10,0,35),
+      
+      Text = "I am a Static UI, I'll never Change!",
+      TextScaled = true,
+      
+      BackgroundColor3 = Color3.new(0,0,0),
+      BackgroundTransparency = 0.5,
+      
+      ["Event"] = {
+        MouseEntered = function()
+          print("AUGHHHH, IM DEAD!")
+          screenGui:Dispose() -- Destroys the Component
+        end
+      }
+      
+     },
+     {
+     
+      UICorner = Lynx.CreateStaticComponent("UICorner",
+      {
+        CornerRadius = UDim.new(0,10)
+      })
+      
+     })
+  })
+  ```
