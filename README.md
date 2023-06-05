@@ -81,3 +81,15 @@ You should utilize Static Components for Instances that will never change after 
      })
   })
   ```
+
+---
+
+# Installation
+
+### wally
+```toml
+  lynx = "loomiquu/lynx@0.1.4"
+```
+
+### GitHub
+[Source Code](https://github.com/Loomiquu/Lynx/releases/)
