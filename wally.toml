@@ -1,12 +1,12 @@
 [package]
 name = "loomiquu/lynx"
-version = "0.1.1"
+version = "0.1.4"
 description = "A Simple to use and Declarative UI Framework, with a built in State Manager and Custom Constructor System"
 license = "MIT"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
-exclude = ["**"]
+exclude = ["test", ".github", "active-test.project.json"]
 include = ["src", "src/*", "default.project.json"]
 
 [dependencies]
